@@ -27,7 +27,7 @@ import com.vaadin.ui.VerticalLayout;
 @Theme("gdg_pge")
 public class Gdg_pgeUI extends UI {
 
-	Navigator navigator;
+	public static Navigator navigator;
 
 	@WebServlet(value = "/*", asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = Gdg_pgeUI.class)

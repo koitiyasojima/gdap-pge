@@ -2,6 +2,7 @@ package com.example.gdg_pge;
 
 import gov.gdg.database.DBConnection;
 import gov.gdg.modelo.Usuario;
+import gov.gdg.usuario.UsuarioView;
 
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainer;
@@ -10,10 +11,12 @@ import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Button.ClickEvent;
 
 public class LoginView extends FormLayout implements View{
 
@@ -54,6 +57,14 @@ public class LoginView extends FormLayout implements View{
 	
 		binder.bind(matriculaField, "matricula");
 		binder.bind(senhaField, "senha");
+		
+		loginBt.addClickListener(new ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				Gdg_pgeUI.navigator.navigateTo(UsuarioView.VIEW);
+			}
+		});
 	}
 
 }
