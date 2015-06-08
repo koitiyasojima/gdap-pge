@@ -47,6 +47,14 @@ public class AdminView extends CustomComponent implements View {
 		layout.addComponent(mainTabSheet, "content");
 		setCompositionRoot(layout);
 	}
+	
+	public MenuBar getBar() {
+		return bar;
+	}
+	
+	public CustomLayout getLayout() {
+		return layout;
+	}
 
 	@Override
 	public void enter(ViewChangeEvent event) {

@@ -2,22 +2,26 @@ package gov.gdg.usuario;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.CustomLayout;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.VerticalLayout;
 
 public class LoginView extends CustomComponent implements View {
 
 	private CustomLayout layout;
 
-	private FormLayout formLayout;
+	private FormLayout loginLayout;
+	private VerticalLayout logoutLayout;
 
 	private TextField matriculaField;
 	private PasswordField senhaField;
 	private Button loginBt;
+	private Button logoutBt;
 
 	public LoginView() {
 		buildUI();
@@ -26,7 +30,8 @@ public class LoginView extends CustomComponent implements View {
 	private void buildUI() {
 		layout = new CustomLayout("main");
 
-		formLayout = new FormLayout();
+		loginLayout = new FormLayout();
+
 		loginBt = new Button("Login");
 
 		matriculaField = new TextField("Matrícula");
@@ -39,11 +44,14 @@ public class LoginView extends CustomComponent implements View {
 		senhaField.setRequired(true);
 		senhaField.setNullRepresentation("");
 
-		formLayout.addComponent(matriculaField);
-		formLayout.addComponent(senhaField);
-		formLayout.addComponent(loginBt);
+		loginLayout.addComponent(matriculaField);
+		loginLayout.addComponent(senhaField);
+		loginLayout.addComponent(loginBt);
 
-		layout.addComponent(formLayout, "login");
+		logoutBt = new Button("Logout");
+		logoutLayout = new VerticalLayout();
+		logoutLayout.addComponent(logoutBt);
+
 		setCompositionRoot(layout);
 	}
 
@@ -59,13 +67,22 @@ public class LoginView extends CustomComponent implements View {
 		return loginBt;
 	}
 
+	public Button getLogoutBt() {
+		return logoutBt;
+	}
+
 	public FormLayout getFormLayout() {
-		return formLayout;
+		return loginLayout;
 	}
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		
+		Object matricula = VaadinSession.getCurrent().getAttribute("matricula");
+		if (matricula != null) {
+			layout.addComponent(logoutLayout, "login");
+		} else {
+			layout.addComponent(loginLayout, "login");
+		}
 	}
 
 }

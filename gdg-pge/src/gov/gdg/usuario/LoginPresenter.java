@@ -12,13 +12,11 @@ import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.filter.And;
 import com.vaadin.data.util.filter.Compare;
-import com.vaadin.navigator.Navigator;
-import com.vaadin.server.Page;
 import com.vaadin.server.UserError;
 import com.vaadin.server.VaadinSession;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.UI;
 
 public class LoginPresenter {
 
@@ -76,6 +74,15 @@ public class LoginPresenter {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+		});
+		
+		view.getLogoutBt().addClickListener(new ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				UI.getCurrent().getPage().setLocation("/gdg-pge");
+				UI.getCurrent().getSession().close();
 			}
 		});
 	}

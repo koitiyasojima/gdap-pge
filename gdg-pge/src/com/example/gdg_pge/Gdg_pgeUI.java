@@ -1,5 +1,6 @@
 package com.example.gdg_pge;
 
+import gov.gdg.admin.AdminPresenter;
 import gov.gdg.admin.AdminView;
 import gov.gdg.seguranca.SHA1Util;
 import gov.gdg.usuario.LoginPresenter;
@@ -37,10 +38,13 @@ public class Gdg_pgeUI extends UI implements View {
 		navigator =  new Navigator(this, this);
 		
 		LoginView loginview = new LoginView();
-		LoginPresenter presenter = new LoginPresenter(loginview);
+		LoginPresenter loginPresenter = new LoginPresenter(loginview);
+		
+		AdminView adminView = new AdminView();
+		AdminPresenter adminPresenter = new AdminPresenter(adminView);
 		
 		navigator.addView("", loginview);
-		navigator.addView(AdminView.VIEW_NAME, new AdminView());
+		navigator.addView(AdminView.VIEW_NAME, adminView);
 	}
 
 	@Override
