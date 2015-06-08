@@ -7,3 +7,9 @@
   @include addons;
   @include gdg_pge;
 }
+
+.v-Notification.mystyle {
+    background: red;
+    border: 10px solid #C00000;
+    color: black;
+}

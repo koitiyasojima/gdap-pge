@@ -80,7 +80,7 @@ public class Usuario implements Serializable {
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		this.senha = SHA1Util.criptografaSenha(senha);;
 	}
 
 	public Diretoria getDiretoria() {
